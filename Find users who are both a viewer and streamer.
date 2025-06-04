@@ -1,0 +1,19 @@
+Q. Find users who are both a viewer and streamer.
+Table: twitch_sessions
+session_end:timestamp without time zone
+session_id:bigint
+session_start:timestamp without time zone
+session_type:text
+user_id:bigint
+
+SOLUTION:
+
+
+SELECT DISTINCT s1.user_id
+FROM twitch_sessions s1
+INNER JOIN 
+        twitch_sessions s2
+    ON 
+        s1.user_id = s2.user_id
+WHERE 
+    s1.session_type = 'streaming'   AND s2.session_type = 'viewing';
