@@ -1,0 +1,20 @@
+Q. Write a query that returns the number of unique users per client per month.
+Table: fact_events
+client_id:text
+customer_id:text
+event_id:bigint
+event_type:text
+id:bigint
+time_id:dateu
+User_id:text
+
+
+SOLUTION:
+
+
+SELECT 
+    clit_id,
+    COUNT(DISTINCT customer_id) AS client_count
+FROM fact_events
+GROUP BY client_id,YEAR(time_id), MONTH(time_id)
+ORDER BY client_count;
