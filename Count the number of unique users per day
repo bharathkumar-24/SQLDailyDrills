@@ -1,0 +1,24 @@
+5. Count the number of unique users per day who logged in from both a mobile device and web. Output the date and the corresponding number of users.
+Table: mobile_logs
+log_date:date
+user_id:text
+
+table: web_logs
+log_date:date
+user_id:text
+
+SOLUTION:
+
+SELECT 
+    COUNT(Distince m.user_id) AS count
+FROM 
+    mobile_logs m
+INNER JOIN 
+    web_logs w
+    ON m.user_id = w.user_id
+    AND m.log_date = w.log_date
+GROUP BY 
+    m.log_date
+ORDER BY
+    m.log_date ;
+ 
