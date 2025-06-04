@@ -1,0 +1,17 @@
+Q. Write a query that returns the rate_type, loan_id, loan balance , and a column that shows with what percentage the loan's balance contributes to the total balance among the loans of the same rate type. Sort the final output by rate_type and loan_id.
+Table: submissions
+balance:double precision
+id:bigint
+interest_rate:double precision
+loan_id:bigint
+rate_type:text
+
+SOLUTION:
+
+SELECT
+  rate_type,
+  loan_id,
+  balance,
+  100.0 * balance / SUM(balance) OVER (PARTITION BY rate_type) AS percentage_contribution
+FROM loans_table
+ORDER BY rate_type, loan_id;
