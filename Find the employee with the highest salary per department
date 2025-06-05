@@ -1,0 +1,55 @@
+Q5. Find the employee with the highest salary per department. Output the department name, employee's first name along with the corresponding salary.
+
+Table:Employee:
+id:bigint
+first_name:text
+last_name:text
+age:bigint
+sex:text
+employee_title:text
+department:text
+salary:bigint
+target:bigint
+bonus:bigint
+email:text
+city:text
+address:text
+manager_id:bigint
+
+SOLUTION:
+
+SELECT 
+    E.department AS department_name,
+    E.first_name,
+    E.salary
+FROM 
+    Employee E
+INNER JOIN (
+    SELECT 
+        department,
+        MAX(salary) AS max_salary
+    FROM 
+
+        Employee
+    GROUP BY 
+        department
+) AS D
+ON 
+    E.department = D.department AND E.salary = D.max_salary;
+
+--------------------------------------------------------------------------------------
+
+SELECT 
+    department AS department_name,
+    first_name,
+    salary
+FROM (
+    SELECT 
+        department,
+        first_name,
+        salary,
+        ROW_NUMBER() OVER (PARTITION BY department ORDER BY salary DESC) AS rank
+    FROM 
+        Employee
+) AS ranked_employees
+WHERE rank = 1;
