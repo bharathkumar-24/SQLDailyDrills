@@ -1,0 +1,24 @@
+Q4. Calculate the total revenue from each customer in March 2019. Include only customers who were active in March 2019.
+Output the revenue along with the customer id and sort the results based on the revenue in descending order.
+
+Table:orders
+
+id:bigint
+cust_id:bigint
+order_date:date
+order_details:text
+total_order_cost:bigint
+
+SOLUTION:
+
+SELECT 
+    cust_id,
+    sum(total_order_cost) as total_revenue
+FROM
+    orders
+WHERE
+    order_date >= '2019-03-01' AND order_date < '2019-04-01'
+GROUP BY
+    cust_id
+ORDER BY
+    total_revenue DESC
