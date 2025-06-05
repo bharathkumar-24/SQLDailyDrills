@@ -1,0 +1,36 @@
+Q4. Find the number of unique transactions and total sales for each of the product categories in 2017. Output the product categories,
+number of transactions, and total sales in descending order. The sales column represents the total cost the customer paid for the product
+so no additional calculations need to be done on the column. Only include product categories that have products sold.
+Tables: wfm_transactions, wfm_products
+
+Wfm_transaction
+customer_id:bigint
+product_id:bigint
+sales:bigint
+store_id:bigint
+transaction_date:date
+transaction_id:bigint
+
+wfm_products
+product_brand:text
+product_category:text
+product_description:text
+product_id:bigint
+
+SELECT 
+    p.product_category
+    count(disitinct c.tranacsaction_id)
+    p.sales as Total_Sales
+FROM
+    Wfm_transactions c
+INNER JOIN 
+    wfm_products p 
+    ON c.product_id = p.product_id
+WHERE 
+    YEAR(c.transaction_date)=2017
+GROUP BY 
+    p.product_category
+HAVING 
+    total_sales > 0
+ORDER BY 
+    Total_Sales
