@@ -1,0 +1,18 @@
+Q. Count the number of user events performed by MacBookPro users. Output the result along with the event name. 
+Sort the result based on the event count in the descending order.
+
+Table: playbook_events
+user_id:bigint
+occurred_at:timestamp
+event_type:text
+event_name:text
+location:text
+device:text
+
+SOLUTION:
+
+SELECT COUNT(event_type) AS event_count , event_name
+FROM playbook_events
+WHERE device='MacBookpro'
+GROUP BY event_name
+ORDER by event_count DESC
