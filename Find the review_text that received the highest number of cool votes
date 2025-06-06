@@ -1,0 +1,25 @@
+Q. Find the review_text that received the highest number of cool votes. Output the business name along with the review text with the highest number of cool votes.
+
+Table:yelp_reviews
+
+business_name:text
+review_id:text
+user_id:text
+stars:text
+review_date:date
+review_text:text
+funny:bigint
+useful:bigint
+cool:bigint
+
+SOLUTION:
+
+SELECT 
+    business_name,
+    revivew_text
+FROM 
+    yelp_reviews
+ORDER BY 
+    cool desc
+LIMIT 1;
+    
