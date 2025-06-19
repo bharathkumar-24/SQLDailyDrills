@@ -1,0 +1,113 @@
+### Create table
+
+CREATE TABLE Member (
+CustomerID INT PRIMARY KEY,
+FirstName VARCHAR(50),
+LastName VARCHAR(50),
+Email VARCHAR(100),a
+Phone VARCHAR(15)
+);
+
+### Insert values into the table 
+
+INSERT INTO Member (CustomerID, FirstName, LastName, Email, Phone)
+VALUES (1, 'John', 'Doe', 'john.doe@example.com', '1234567890'), (2, 'Emily',
+'Smith', 'emily.smith@gmail.com', '2345678901'), (3, 'Michael', 'Johnson',
+'michael.johnson@yahoo.com', '3456789012'), (4, 'Sarah', 'Williams',
+'sarah.williams@outlook.com', '4567890123'), (5, 'David', 'Brown',
+'david.brown@gmail.com', '5678901234'), (6, 'Sophia', 'Jones',
+'sophia.jones@example.com', '6789012345'), (7, 'James', 'Miller',
+'james.miller@yahoo.com', '7890123456'), (8, 'Olivia', 'Davis',
+'olivia.davis@outlook.com', '8901234567'), (9, 'Daniel', 'Martinez',
+'daniel.martinez@gmail.com', '9012345678'), (10, 'Ava', 'Garcia',
+'ava.garcia@example.com', '0123456789'), (11, 'Ethan', 'Rodriguez',
+'ethan.rodriguez@gmail.com', '1234876543'), (12, 'Isabella', 'Wilson',
+'isabella.wilson@yahoo.com', '2345987654'), (13, 'William', 'Moore',
+'william.moore@outlook.com', '3456098765'), (14, 'Mia', 'Taylor',
+'mia.taylor@gmail.com', '4567109876'), (15, 'Benjamin', 'Anderson',
+'benjamin.anderson@example.com', '5678210987'), (16, 'Charlotte', 'Thomas',
+'charlotte.thomas@yahoo.com', '6789321098'), (17, 'Lucas', 'Jackson',
+'lucas.jackson@outlook.com', '7890432109'), (18, 'Amelia', 'White',
+'amelia.white@gmail.com', '8901543210'), (19, 'Alexander', 'Harris',
+'alexander.harris@example.com', '9012654321'), (20, 'Ella', 'Martin',
+'ella.martin@yahoo.com', '0123765432');
+
+
+### Questions:
+
+  Q1. Write a SQL query to find all members whose first name is "John.
+SOL> SELECT * FROM member WHERE firstname LIKE "%John%";
+
+
+Q2."Retrieve the details of members who have a phone number starting with "123."
+-> SELECT * FROM member WHERE phone LIKE "123%";
+
+Q3. Write a query to find members whose last name is "Smith" and first name is "Emily."
+-> SELECT * FROM member WHERE lastname LIKE "%Smith%" and firstname LIKE "%emily%";
+
+Q4 Get all members whose email contains "gmail.com."
+-> SELECT * FROM member WHERE email LIKE "%gmail.com";
+-> SELECT * FROM member WHERE email regexp "gmail.com$";
+
+Q5 Write a query to find all members whose first name starts with the letter "A."
+-> SELECT * FROM member WHERE firstname LIKE "A%";
+
+Q6. Retrieve the details of members whose email ends with "@yahoo.com."
+-> SELECT * FROM member WHERE email LIKE "%yahoo.com";
+-> SELECT * FROM member WHERE email regexp "yahoo.com$";
+
+Q7. Find all members whose last name contains the substring "son."
+-> SELECT * FROM member WHERE lastname regexp "son";
+
+Q8. Write a query to retrieve all members whose first name is "J" followed by any characters.
+-> SELECT * FROM member WHERE firstname LIKE "J%"; {Jhon,James}
+-> SELECT * FROM member WHERE firstname regexp "J.*";{Jhon,James, Benjamin}
+
+Q9. Find members whose phone number starts with "456" and ends with "789."
+-> SELECT * FROM member WHERE phone LIKE "456%" AND phone LIKE "%789";
+
+Q10. Retrieve the details of members whose first name is "James" AND lastname is "Williams."
+-> SELECT * FROM member WHERE firstname regexp "^james$" and lastname LIKE "%williams%";
+
+Q11. Write a query to find members whose first name is "John" OR last name is "Doe."
+-> SELECT * FROM member WHERE firstname regexp "^james$" and lastname LIKE "%doe%";
+
+Q12. List all members whose first name starts with "A" AND email contains "hotmail.com."
+-> SELECT * FROM member WHERE firstname LIKE "A%" and email regexp "hotmail.com";
+
+Q13. Find members who have the first name "Michael" OR phone number ending with "1234."
+-> SELECT * FROM member WHERE firstname regexp "Michael" or phone Like "%1234";
+
+Q14. Retrieve all members whose email contains "outlook.com" AND phone number starts with "555."
+-> SELECT * FROM member WHERE email regexp "outlook.com" and phone regexp "^555";
+
+Q15. Write an SQL query to insert a new member with CustomerID = 101,FirstName = "Sara", LastName = "Miller", Email="sara.miller@example.com", and Phone = "5551234567."
+-> INSERT INTO member VALUES (101,"Sara","Miller","sara.miller@example.com","5551234567");
+
+Q16. Update the email address of the member with CustomerID = 5 to "john.doe@newdomain.com."
+-> UPDATE member SET email="john.doe@newdomain.com" WHERE CustomerID = 5;
+  { 5 | David     | Brown    | john.doe@newdomain.com | 5678901234 |}
+
+Q17. Delete the member with CustomerID = 10 from the table.
+-> DELETE FROM member WHERE  CustomerID = 10;
+
+Q18. Insert three new members with the given first name, last name, email,and phone number
+-> INSERT INTO member VALUES (21,"Bhart","Boya","bharth@gmail.com",1234098765),(22,"Mahesh","Katta","kattamahesh1234@yahoo.com",6789054321),(23,"Vishnu","Vallepu","vishnuvallepu345@hotmail.com",1029384756);
+
+Q19. Update the phone number of the member with CustomerID = 7 to "9998887777"?
+-> UPDATE member SET phone =9998887777 WHERE CustomerID = 7;
+
+Q20. Write a query to update the email address of all members whose first name starts with "A" to "updated_email@domain.com".
+-> UPDATE member SET email ="updated_email@domain.com" WHERE firstname regexp "^A";
+
+Q21. Update the phone number of all members whose last name contains "son" to "5550001111".
+-> UPDATE member SET phone =5550001111 WHERE lastname regexp "son";
+
+Q22. Change the first name to "UpdatedName" for all members whose email contains "example".
+-> UPDATE member SET firstname ="UpdatedName" WHERE email regexp "example";
+
+Q23. Update the last name of members whose phone number starts with "555" to "UpdatedLastName".
+-> UPDATE member SET lastname ="UpdatedLastName" WHERE phone regexp "^555";
+
+Q24. Set the email to "new_email@domain.com" for all members whose phone number ends with "4321".
+-> UPDATE member SET email ="new_email@domain.com" WHERE phone LIKE "%4321";
