@@ -1,0 +1,67 @@
+=> CREATE TABLE Customers ( customer_id INT PRIMARY KEY, name VARCHAR(100), city VARCHAR(100) ); 
+
+=> INSERT INTO Customers (customer_id, name, city) VALUES
+(1, 'Alice', 'New York'), (2, 'Bob', 'Los Angeles'), 
+(3, 'Charlie', 'Chicago'), (4, 'David', 'San Francisco'),
+(5, 'Eve', 'Houston'), (6, 'Frank', 'Phoenix'), 
+(7, 'Grace','Austin'), (8, 'Hannah', 'Seattle'),
+(9, 'Ivy', 'Miami'), (10, 'Jack', 'Dallas'), 
+(11, 'Karen', 'Boston'), (12, 'Louis', 'San Diego'), 
+(13, 'Mona', 'Denver'), (14, 'Nancy', 'Portland'), (15, 'Oscar', 'Chicago'), 
+(16,'Paul', 'Atlanta'), (17, 'Quincy', 'Philadelphia'), (18, 'Rachel', 'San Jose'), 
+(19, 'Steve', 'LasVegas'), (20, 'Tina', 'Orlando');
+
+=> Creating the Orders table
+CREATE TABLE Orders ( order_id INT PRIMARY KEY, customer_id INT, product VARCHAR(100), order_date DATE, FOREIGN KEY (customer_id) REFERENCES Customers(customer_id) ); 
+
+=> Inserting 20 records into Orders table
+INSERT INTO Orders (order_id, customer_id, product, order_date) VALUES 
+(1, 1,'Laptop', '2025-01-10'), (2, 2, 'Tablet', '2025-02-15'), (3, 3, 'Phone', '2025-03-01'), 
+(4, 4, 'Monitor','2025-03-02'), (5, 5, 'Keyboard', '2025-03-05'), (6, 6, 'Mouse', '2025-03-06'), 
+(7, 7, 'Desk', '2025-03-08'), (8, 8, 'Chair', '2025-03-10'), (9, 9, 'Headphones', '2025-03-12'), 
+(10, 10, 'Smartwatch','2025-03-15'), (11, 4, 'Webcam', '2025-03-18'), (12, 2, 'Projector', '2025-03-20'),
+(13, 11, 'Lamp','2025-03-21'), (14, 12, 'Printer', '2025-03-22'), (15, 13, 'Fan', '2025-03-23'), 
+(16, 14, 'Router','2025-03-24'), (17, 15, 'Microwave', '2025-03-25'), (18, 16, 'Blender', '2025-03-26'), 
+(19, NULL,'TV', '2025-03-27'), (20, NULL, 'Fridge', '2025-03-28');
+
+
+Q1. Retrive all customers and their respective orders even if the customer has no order?
+-> SELECT customers.name,orders.order_id,orders.product FROM orders LEFT OUTER JOIN customers ON customers.customer_id=orders.customer_id;
+->  SELECT customers.name,orders.order_id,orders.product FROM customers RIGHT OUTER JOIN orders ON customers.customer_id=orders.customer_id;
+
+Q2. get list of all orders , including the customers name if avaialble otherwise show null for customers without orders
+-> SELECT customers.name,orders.order_id,orders.product FROM customers RIGHT OUTER JOIN orders ON customers.customer_id=orders.customer_id;
+
+Q3. show all products ordered and the corresponding customer name if availabe;
+-> SELECT orders.product,customers.name FROM customers RIGHT OUTER JOIN orders ON customers.customer_id=orders.customer_id;
+
+Q4. find all the customers and their orders dates,including customers who have not placed any orders?
+-> SELECT customers.name,orders.order_date FROM orders RIGHT OUTER JOIN customers ON customers.customer_id=orders.customer_id;
+
+Q5. list all the product ordered with customer names even for customer with no matching record?
+-> SELECT customers.name,orders.product FROM orders RIGHT OUTER JOIN customers ON customers.customer_id=orders.customer_id;
+
+Q6. get all orders along with the customers details (name and city), even for orders without customer details?
+-> SELECT customers.name,customers.city,orders.product FROM customers RIGHT OUTER JOIN orders ON customers.customer_id=orders.customer_id;
+
+Q7. display a list of cutomers who have not placed any orders using a right outer join?
+-> SELECT customers.name,orders.order_id FROM orders RIGHT OUTER JOIN customers ON customers.customer_id=orders.customer_id;WHERE orders.order_id is null;
+
+Q8.retrive the order id, product name, and customer name, including orders placed customers not listed in the customers table?
+-> SELECT orders.order_id,orders.prodcut FROM customers RIGHT OUTER JOIN orders ON customers.customer_id=orders.customer_id;
+
+Q9. display the customers who have placed an order and the product they ordered,showing null for customers who didn't place order?
+-> SELECT customers.name,orders.product,orders.order_id FROM orders RIGHT OUTER JOIN customers ON customers.customer_id=orders.customer_id;
+
+Q10. find all the customers who placed a "tablet" order,including customers who didn't place any order.
+-> SELECT customers.name,orders.product FROM orders RIGHT OUTER JOIN customers ON customers.customer_id=orders.customer_id WHERE orders.product="tablet" or orders.product IS NULL;
+
+Q11. Show the customer names and their order products if they exit,other wise return null for products?
+-> SELECT customers.name,orders.product FROM customers LEFT OUTER JOIN orders ON customers.customer_id=orders.customer_id ;
+
+Q12. get the customer names and the products they ordered,ensuring all orders are listed , even if ther is no customer for some orders.
+-> SELECT customers.name,orders.product FROM customers RIGHT JOIN orders ON customers.customer_id=orders.customer_id;
+-> select customers.name,orders.product from orders left join customers on customers.customer_id=orders.customer_id
+
+Q13. get the no of orders placed by the customer ,including the customer who dont palce any orders?
+-> select customers.name, count(orders.order_id) from orders right join customers on customers.customer_id=orders.customer_id group by customers.name;
