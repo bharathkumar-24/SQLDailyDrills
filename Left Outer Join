@@ -1,0 +1,42 @@
+=> CREATE TABLE departments (departmentID INT PRIMARY KEY,departmentName VARCHAR(25),departmentLocation varchar(30));
+
+INSERT INTO departments  VALUES
+(101,"HR","Ameerpet" ),
+(102,"Sales","Hitechcity" ),
+(103,"Accounts","Amberpet" ),
+(104,"IT","Panjagutta");
+
+=> CREATE TABLE employess (empID INT PRIMARY KEY,empName VARCHAR(30) NOT NULL,departmentID INT , salary DECIMAL (10,2),          FOREIGN KEY (departmentID) REFERENCES departments (departmentID));
+
+INSERT INTO employess VALUES 
+(1,"Alice",101,35000),
+(2,"Bob",null,30000),
+(3,"Joh",103,20000),
+(4,"Smith",104,20000),
+(5,"Charlie",102,30000),
+(6,"Jane",null,30000),
+(7,"Brown",103,20000),
+(8,"Victor",104,25000),
+(9,"Jake",102,30000),
+(10,"Simon",101,35000);
+
+Q1. find the employess and their departments ,inclusding the one with no departments id?
+-> SELECT employess.empName,departments.departmentName FROM employess LEFT OUTER JOIN departments ON employess.departmentID=departments.departmentID;
+
+Q2. get all departments and their employess,showing null for departments with no employess.
+-> SELECT departments.departmentName,employess.empname from departments left outer join employess on employess.departmentID=departments.departmentID;
+
+Q3. find employess who do not belong to any department?
+-> SELECT employess.empName,employess.departmentid from employess left outer join departments on employess.departmentID=departments.departmentID where departments.departmentName is null;
+
+Q4. list all the employess with their department location, even if they no department.
+-> SELECT employess.empname,departments.departmentLocation from employess left outer join departments on employess.departmentID=departments.departmentID ; 
+
+Q5. retirve employess who belong to the sales department?
+-> SELECT employess.empname, departments.departmentname FROM employess INNER JOIN departments on employess.departmentID=departments.departmentId WHERE departments.departmentName="Sales";
+
+Q6.Show employees who are assigned to non-existent departments (invalid foreign keys).
+-> SELECT employess.empname,departments.departmentID FROM employess 
+
+Q7. list all the departments with employess, but exclude hr employess.
+-> SELECT employess.empname,departments.departmentname FROM employess LEFT OUTER JOIN departments ON employess.departmentID=departments.departmentID WHERE departments.departmentName !="HR" or departments.departmentID IS NULL;
