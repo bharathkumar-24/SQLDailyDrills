@@ -1,0 +1,87 @@
+CREATE TABLE t1 (
+    id INT PRIMARY KEY,
+    name VARCHAR(50)
+);
+CREATE TABLE t2 (
+    id INT PRIMARY KEY,
+    product VARCHAR(50)
+);
+CREATE TABLE t3 (
+    id INT PRIMARY KEY,
+    city VARCHAR(50)
+);
+INSERT INTO t1 (id, name) VALUES
+(1, 'Alice'),
+(2, 'Bob'),
+(3, 'Charlie'),
+(4, 'David'),
+(5, 'Eve'),
+(6, 'Frank'),
+(7, 'Grace'),
+(8, 'Hannah'),
+(9, 'Ivy'),
+(10, 'Jack'),
+(11, 'Kathy'),
+(12, 'Leo'),
+(13, 'Mona'),
+(14, 'Nina'),
+(15, 'Oscar'),
+(16, 'Paul'),
+(17, 'Quincy'),
+(18, 'Rita'),
+(19, 'Sam'),
+(20, 'Tina');
+
+INSERT INTO t2 (id, product) VALUES
+(2, 'Laptop'),
+(3, 'Phone'),
+(5, 'Tablet'),
+(6, 'Smartwatch'),
+(7, 'Keyboard'),
+(8, 'Mouse'),
+(9, 'Monitor'),
+(10, 'Headphones'),
+(11, 'Speaker'),
+(12, 'Camera'),
+(13, 'Printer'),
+(14, 'Scanner'),
+(15, 'Projector'),
+(16, 'Charger'),
+(17, 'Router'),
+(18, 'USB Cable'),
+(19, 'Flash Drive'),
+(20, 'Webcam'),
+(21, 'Microphone'),
+(22, 'External Hard Drive');
+
+INSERT INTO t3 (id, city) VALUES
+(2, 'London'),
+(3, 'Paris'),
+(5, 'Berlin'),
+(7, 'New York'),
+(8, 'Tokyo'),
+(10, 'Sydney'),
+(11, 'Dubai'),
+(12, 'Singapore'),
+(14, 'Moscow'),
+(15, 'Rio de Janeiro'),
+(16, 'Los Angeles'),
+(18, 'Chicago'),
+(19, 'San Francisco'),
+(20, 'Toronto'),
+(21, 'Barcelona'),
+(22, 'Madrid'),
+(23, 'Rome'),
+(24, 'Bangkok'),
+(25, 'Mumbai'),
+(26, 'Seoul');
+
+
+Q1. full outerjoin on id (matching and non_matchin rows)?
+-> SELECT t1.id,t1.name,t2.product FROM t1 LEFT OUTER JOIN t2 ON t1.id=t2.id
+    UNION
+   SELECT t1.id,t1.name,t2.product FROM t1 RIGHT OUTER JOIN t2 ON t1.id=t2.id;
+
+-> SELECT t1.name,t2.product FROM t1 LEFT OUTER JOIN t2 ON t1.id=t2.id
+    UNION
+   SELECT t1.name,t2.product FROM t1 RIGHT OUTER JOIN t2 ON t1.id=t2.id;
