@@ -1,0 +1,37 @@
+=> CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    manager_id INT,
+    FOREIGN KEY (manager_id) REFERENCES employees(id)
+);
+
+=> INSERT INTO employees (id, name, manager_id) VALUES
+(1, 'Alice', NULL),
+(2, 'Bob', 1),
+(3, 'Charlie', 1),
+(4, 'David', 2),
+(5, 'Eva', 2),
+(6, 'Frank', 3),
+(7, 'Grace', 3),
+(8, 'Hannah', 4),
+(9, 'Ivy', 4),
+(10, 'Jack', 5),
+(11, 'Karen', 5),
+(12, 'Leo', 6),
+(13, 'Mia', 6),
+(14, 'Noah', 7),
+(15, 'Olivia', 7),
+(16, 'Paul', 8),
+(17, 'Quincy', 8),
+(18, 'Rita', 9),
+(19, 'Sam', 9),
+(20, 'Tina', 10);
+
+
+Q1. Find the names of all the employees along  with their managers name?
+-> SELECT t1.name as emp ,t2.name as manager from employees as t1 inner join employees as t2 on t1.manager_id=t2.id;
+
+Q2. find the employees  who dont have managers(i.e manager_id=null)?
+-> SELECT t1.name as emp FROM employees AS t1 LEFT OUTER JOIN employees AS t2 on t1.manager_id=t2.id WHERE t1.manager_id IS NULL;
+
+Q3. find the employess who have the same manager (list pairs of employess)
