@@ -1,0 +1,56 @@
+=> CREATE TABLE departments (departmentID INT PRIMARY KEY,departmentName VARCHAR(25) NOT NULL);
+
+INSERT INTO departments  VALUES
+(101,"HR" ),
+(102,"Sales" ),
+(103,"Accounts" ),
+(104,"IT");
+
+=> CREATE TABLE employess (empID INT PRIMARY KEY,empName VARCHAR(30) NOT NULL,departmentID INT , salary DECIMAL (10,2),          FOREIGN KEY (departmentID) REFERENCES departments (departmentID));
+
+INSERT INTO employess VALUES 
+(1,"Alice",101,35000),
+(2,"Bob",102,30000),
+(3,"Joh",103,20000),
+(4,"Smith",104,20000),
+(5,"Charlie",102,30000),
+(6,"Jane",102,30000),
+(7,"Brown",103,20000),
+(8,"Victor",104,25000),
+(9,"Jake",102,30000),
+(10,"Simon",101,35000);
+
+QUESTIONS:
+
+Q1. find the names of all employess and their department names?
+-> SELECT employess.empName,departments.departmentName from employess INNER JOIN  departments ON   employess.departmentID=departments.departmentID;
+
+Q2. get the names and salaries of employess who work in the "sales" department? 
+-> SELECT employess.empName,employess.salary FROM employess INNER JOIN departments ON employess.departmentID=departments.departmentID WHERE departments.departmentName="sales";
+
+Q3. List all emoloyess who have a salary greater than 20000 and their dapartment names.
+-> SELECT employess.empName,departments.departmentName FROM employess INNER JOIN departments ON employess.departmentID=departments.departmentID WHERE employess.salary>20000;
+
+Q4. Find the names of employess and their department names who are  earning more than the avereage salary?
+-> SELECT employess.empName,departments.departmentName,sum(employess.salary) as sum,count(employess.empName) as count from employess INNER JOIN departments ON employess.departmentID=departments.deparmentID WHERE employess.salary> (sum/count);
+
+Q5. get a list of all employess and thei departments, sorted by department name?
+-> SELECT  employess.empName, departments.departmentName FROM employess INNER JOIN departments ON employess.departmentID = departments.departmentID ORDER BY departments.departmentName;
+
+Q6. find the employee names and their salaries but exclude thor in the it deparmnet>
+-> SELECT  employess.empName, employess.salary FROM employess INNER JOIN departments ON employess.departmentID=departments.departmentID where departments.departmentName != "IT";
+
+Q7. list the names of employees and the number of employees in each department?
+-> SELECT departments.departmentname , count(employess.empID) from employess inner join departments on employess.departmentID=departments.departmentID GROUP BY departments.departmentname;
+
+Q8. find the highest salary in each department?
+-> SELECT departments.departmentName, MAX(employess.salary) FROM employess INNER JOIN departments ON employess.departmentID=departments.departmentID GROUP BY departments.departmentName;
+
+*Q9. get the names of the employess who work in the same department as john?
+-> SELECT  employess.empName FROM employess INNER JOIN departments WHERE employess.departmentID=(SELECT departmentID FROM employess WHERE empName="joh");
+
+Q10. find the total salary paid to employess in each department;
+-> SELECT departments.departmentName,SUM(employess.salary) FROM employess INNER JOIN departments ON employess.departmentID=departments.departmentID GROUP BY departments.departmentName;
+
+*Q11. find the employes whose salsry is greater than the avarge salary of the departments?
+-> SELECT employess.empName FROM employess INNER JOIN departments ON employess.departmentID=departments.departmentID WHERE employess.salary >(SELECT avg(salary) from employess where  departemtID=101) 
