@@ -1,0 +1,204 @@
+=> CREATE TABLE Customers (
+ customer_id INT PRIMARY KEY,
+ first_name VARCHAR(50),
+ last_name VARCHAR(50),
+ email VARCHAR(100),
+ phone VARCHAR(20),
+ city VARCHAR(50)
+);
+
+=> INSERT INTO Customers (customer_id, first_name, last_name,
+email, phone, city)
+VALUES
+(1, 'John', 'Doe', 'john.doe@example.com', '555-1234', 'New York'),(2, 'Jane', 'Smith', 'jane.smith@example.com', '555-2345', 'Los
+Angeles'),
+(3, 'Tom', 'Johnson', 'tom.johnson@example.com', '555-3456',
+'Chicago'),
+(4, 'Emily', 'Davis', 'emily.davis@example.com', '555-4567', 'San
+Francisco'),
+(5, 'Michael', 'Brown', 'michael.brown@example.com', '555-5678',
+'Miami'),
+(6, 'Sarah', 'Williams', 'sarah.williams@example.com', '555-6789',
+'Houston'),
+(7, 'David', 'Martinez', 'david.martinez@example.com', '555-7890',
+'Dallas'),
+(8, 'Laura', 'Garcia', 'laura.garcia@example.com', '555-8901',
+'Phoenix'),
+(9, 'James', 'Rodriguez', 'james.rodriguez@example.com', '555-
+9012', 'Austin'),
+(10, 'Linda', 'Wilson', 'linda.wilson@example.com', '555-1122',
+'Seattle'),
+(11, 'Robert', 'Moore', 'robert.moore@example.com', '555-2233',
+'Denver'),
+(12, 'Lisa', 'Taylor', 'lisa.taylor@example.com', '555-3344', 'Boston'),(13, 'William', 'Anderson', 'william.anderson@example.com', '555-4455', 'Portland'),
+(14, 'Maria', 'Thomas', 'maria.thomas@example.com', '555-5566',
+'Las Vegas'),
+(15, 'Joseph', 'Jackson', 'joseph.jackson@example.com', '555-6677',
+'Atlanta'),
+(16, 'Patricia', 'White', 'patricia.white@example.com', '555-7788',
+'Orlando'),
+(17, 'Charles', 'Harris', 'charles.harris@example.com', '555-8899',
+'Dallas'),
+(18, 'Margaret', 'Clark', 'margaret.clark@example.com', '555-9900',
+'Chicago'),
+(19, 'Daniel', 'Lewis', 'daniel.lewis@example.com', '555-1011', 'New
+York'),
+(20, 'Susan', 'Young', 'susan.young@example.com', '555-1213', 'San
+Francisco');
+
+CREATE TABLE Orders (
+ order_id INT PRIMARY KEY,
+ customer_id INT,
+ order_date DATE,
+ total_amount DECIMAL(10, 2),
+ FOREIGN KEY (customer_id) REFERENCES
+ Customers(customer_id)
+);
+
+INSERT INTO Orders (order_id, customer_id, order_date,
+total_amount)
+VALUES
+(1, 1, '2023-01-15', 120.50),
+(2, 2, '2023-02-20', 250.00),
+(3, 3, '2023-03-10', 90.00),
+(4, 4, '2023-03-25', 150.75),
+(5, 5, '2023-04-05', 300.00),
+(6, 6, '2023-04-15', 220.45),
+(7, 7, '2023-05-01', 80.30),
+(8, 8, '2023-05-20', 110.10),
+(9, 9, '2023-06-10', 60.50),
+(10, 10, '2023-06-25', 180.90),
+(11, 11, '2023-07-10', 205.40),
+(12, 12, '2023-07-15', 275.60),
+(13, 13, '2023-08-05', 95.00),
+(14, 14, '2023-08-20', 132.25),
+(15, 15, '2023-09-01', 150.00),
+(16, 16, '2023-09-10', 210.75),
+(17, 17, '2023-10-01', 145.00),
+(18, 18, '2023-10-15', 280.30),
+(19, 19, '2023-11-05', 300.00),
+(20, 20, '2023-11-15', 185.25);
+
+1.How would you join the Customers table and the Orders table to get the customer_idand order_id for each order placed?
+-> SELECT customers.customer_id,orders.order_id FROM Customers INNER JOIN orders ON Customers.customer_id=orders.order_id;
+
+2.How can you list the first name, last name, and total order amount for all customers who have placed orders?
+-> SELECT customerS.first_name,customers.last_name,orders.total_amount FROM Customers INNER JOIN orders ON Customers.customer_id=orders.order_id;
+
+3.How do you retrieve the full name (first_name + last_name) and the total order amount for each customer using INNER JOIN?
+-> SELECT CONCAT(customers.first_name," ",customers.last_name) AS FullName,orders.total_amount FROM Customers INNER JOIN orders ON Customers.customer_id=orders.order_id;
+
+4.How do you list all customers who have made an order with the order date and order
+total amount?
+-> SELECT CONCAT(customers.first_name," ",customers.last_name) AS FullName,orders.order_date AS Date,orders.total_amount AS OrderAmount FROM Customers INNER JOIN orders ON Customers.customer_id=orders.order_id;
+
+5.How can you get all customer names along with their respective email addresses and order details?
+-> SELECT CONCAT(customers.first_name," ",customers.last_name) AS FullName, customers.email AS Email, orders.order_date AS Date,orders.total_amount AS OrderAmount FROM customers INNER JOIN orders ON customers.customer_id=orders.order_id;
+
+6.How would you join the Customers and Orders tables to find all orders placed in a specific city?
+-> SELECT customers.city,count(orders.order_id) from customers inner join orders on customers.customer_id = orders.customer_id  where customers.city="New York" group by customers.city;
+
+7.How can you find all customers who have placed orders after a specific date?
+-> SELECT customers.first_name,orders.order_date FROM customers INNER JOIN orders ON customers.customer_id=orders.order_id WHERE orders.order_date> " 2023-05-01" ;
+
+8.How would you join Customers and Orders to find the order details of customers who have a specific phone number?
+-> SELECT customers.first_name,orders.order_date,orders.total_amount FROM customers INNER JOIN orders ON customers.customer_id=orders.order_id WHERE customers.phone="555-9012";
+
+9.How do you find the total order amount for each customer along with their full name?
+-> SELECT CONCAT(customers.first_name,' ',customers.last_name) AS FullName,SUM(orders.total_amount) AS TotalOrderAmount FROM customers INNER JOIN orders ON customers.customer_id=orders.order_id GROUP BY FullName;
+
+10.How would you list all orders and their respective customer names (first and last)?
+-> SELECT customers.first_name,customers.last_name,orders.order_date,orders.total_amount FROM customers INNER JOIN orders ON customers.customer_id=orders.order_id;
+
+11. How do you filter the result to show only customers who have made orders above $100?
+-> SELECT customers.customer_id,CONCAT(customers.first_name,' ',customers.last_name) AS FullName,orders.order_id,orders.order_date,orders.total_amount FROM customers INNR JOIN orders ON customers.customer_id=orders.order_id WHERE orders.total_amount>100; 
+
+12. How would you find customers who have placed orders between two specific dates?
+-> SELECT customers.first_name,orders.order_id FROM customers INNER JOIN orders ON customers.customer_id = orders.order_id WHERE orders.order_date BETWEEN '2023-03-25' AND '2023-10-01';
+
+13. How can you retrieve a list of customers with their order dates, and filter only those orders placed in the last 30 days?
+-> SELECT customers.first_name,orders.order_date FROM customers INNER JOIN orders ON customers.customer_id=order.customer_id WHERE orders.order_date=DATE_SUB (CURDATE(),INTERVAL 30 DAY);
+
+14. How would you get the names of customers and their orders where the total amount is less than $50?
+-> SELECT customers.first_name,orders.order_id,orders.order_date FROM customers INNER JOIN orders ON customers.customer_id=orders.customer_id WHERE orders.total_amount<50;
+
+15. How do you join the Customers and Orders tables and filter the results where the city is 'New York'?
+-> SELECT customers.first_name,orders.order_id FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id WHERE customers.city="New York" ;
+
+16. How can you find all customers whose first name starts with 'J' and who have placed an order?
+-> SELECT customers.first_name,orders.order_id FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id WHERE customers.first_name LIKE "J%"; 
+
+17. How do you filter the orders to show only those placed by customers living in a certain city?
+-> SELECT customers.first_name,orders.order_id FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id WHERE customers.city="New York";
+
+18. How can you get the customers who have placed multiple orders?
+-> SELECT customers.first_name AS name FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customers.first_name HAVING count(orders.order_id)>1 ;
+
+19. How would you find all orders made by customers whose email ends with "@gmail.com"?
+->  SELECT orders.order_id,orders.total_amount FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id WHERE customers.email LIKE "%@gmail.com";
+
+20. How can you join the Customers and Orders tables and find customers who have not placed any orders?
+-> SELECT customers.first_name,customers.last_name  FROM customers LEFT JOIN orders ON customers.customer_id = orders.customer_id WHERE orders.order_id IS NULL;
+
+
+--------------------------------Sorting and Limiting results--------------------------------------------------------
+21. How would you join the Customers and Orders tables to get the most recent order placed by each customer?
+-> SELECT customers.first_name,orders.order_id,MAX(orders.order_date) FROM customers INNER JOIN orders ON customers.customer_id = orders.order_id GROUP BY customers.customer_id; 
+
+22. How do you sort the result of an INNER JOIN by the order_date column in ascending order?
+-> SELECT customers.first_name,orders.order_date FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id ORDER BY orders.order_date ASC;
+
+23. How would you sort the customers and orders by the total order amount in descending order?
+-> SELECT customers.first_name,orders.total_amount FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id ORDER BY orders.total_amount DESC;
+
+24. How can you join two tables and limit the results to the top 10 customers based on the total order amount?
+-> SELECT customers.first_name,orders.total_amount FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id ORDER BY orders.total_amount DESC LIMIT 10;
+
+25. How do you retrieve customers and their orders, sorted by customer name in ascending order?
+-> SELECT CONCAT(customers.first_name,' ',customers.last_name) AS FullName,orders.order_id FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id ORDER BY FullName;
+
+26. How do you join the tables and find the first 5 orders placed by customers using LIMIT?
+-> SELECT customers.first_name,orders.order_date FROM customers INNER JOIN orders ON customers.customer_id=orders.customer_id ORDER BY orders.order_date LIMIT 5;
+
+27. How can you list orders made by customers and sort them by order_date in descending order?
+-> SELECT customers.first_name,orders.order_date FROM customers INNER JOIN orders ON customers.customer_id=orders.customer_id ORDER BY orders.order_date DESC;
+
+28. How do you join the Customers and Orders tables and retrieve results ordered by city and total_amount?
+-> SELECT customers.first_name,customers.city,orders.total_amount FROM customers INNER JOIN orders ON customers.customer_id=orders.customer_id ORDER BY customers.city,orders.total_amount;
+
+29. How would you list all orders placed by customers sorted by order_date but only showing the first 10 results? 
+->  SELECT customers.first_name,orders.order_date FROM customers INNER JOIN orders ON customers.customer_id=orders.customer_id ORDER BY orders.order_date LIMIT 10;
+
+30. How do you get the latest 5 orders and the corresponding customer names? 
+->  SELECT customers.first_name AS name,orders.order_date AS date FROM customers INNER JOIN orders ON customers.customer_id=orders.customer_id ORDER BY date DESC LIMIT 5;
+
+---------------------------------Aggregates and Grouping---------------------------------------------------------------
+31. How can you calculate the total number of orders placed by each customer?
+-> SELECT customers.first_name AS name ,COUNT(orders.order_id) AS TotalOrders FROM customers INNER JOIN orders ON customers.customer_id=orders.customer_id GROUP BY customers.customer_id;
+
+32. How would you join Customers and Orders to find the average order value per customer?
+-> SELECT customers.first_name,AVG(orders.total_amount) FROM customers INNER JOIN orders ON customers.customer_id=orders.customer_id GROUP BY customers.customer_id;
+
+33. How do you group the results by customer_id and calculate the total order amount for each customer?
+-> SELECT customers.customer_id,SUM(orders.total_amount) AS total_order_amount FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customers.customer_id;
+
+34. How can you find the total order amount for each customer, grouped by city?
+-> SELECT customers.city,SUM(orders.total_amount) AS total_order_amount FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customers.customer_id;
+
+35. How do you retrieve the customer name and total amount spent, grouped by customer? 
+-> SELECT customers.first_name, SUM(orders.total_amount) AS total_spent  FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customers.customer_id;
+
+36. How would you calculate the sum of all orders placed by customers in a particular city using INNER JOIN?
+-> SELECT customers.city, SUM(orders.total_amount) AS total_order_amount FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id WHERE customers.city = 'New York' GROUP BY customers.city;
+
+37. How do you calculate the average total order amount for all customers using INNER JOIN?
+-> SELECT customers.first_name,AVG(orders.total_amount) FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customers.customer_id; 
+
+38. How can you retrieve customers who have placed more than three orders, grouped by customer name?
+-> SELECT customers.first_name FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customers.customer_id HAVING count(orders.order_id)>3; 
+
+39. How would you list the customers and their total order amount, grouped by city? 
+-> SELECT customers.first_name,customers.city,sum(orders.total_amount) FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id GROUP BY customers.city,customers.customer_id;
+
+40. How can you get the total number of orders placed by customers for each month?
+-> SELECT MONTH(orders.order_date) as month,count(orders.total_amount) as total_orders FROM customers INNER JOIN orders ON customers.customer_id = orders.customer_id GROUP BY month;
