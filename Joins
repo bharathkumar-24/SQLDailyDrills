@@ -1,0 +1,198 @@
+Create Employee table:
+-- Create the Employees table
+
+CREATE TABLE Employees (
+ emp_id INT PRIMARY KEY,
+ first_name VARCHAR(50),
+ last_name VARCHAR(50),
+ department_id INT,
+ manager_id INT,
+ salary DECIMAL(10, 2)
+);
+
+-- Insert 20 records into Employees table
+INSERT INTO Employees (emp_id, first_name, last_name, department_id, manager_id, salary)
+VALUES
+(1, 'Alice', 'Smith', 1, NULL, 60000.00),
+(2, 'Bob', 'Johnson', 2, 1, 55000.00),
+(3, 'Charlie', 'Williams', 3, 1, 70000.00),
+(4, 'David', 'Brown', 1, 1, 80000.00),
+(5, 'Eve', 'Davis', 2, 3, 75000.00),
+(6, 'Frank', 'Miller', 1, 2, 62000.00),
+(7, 'Grace', 'Wilson', 3, 4, 82000.00),
+(8, 'Hank', 'Moore', 2, 3, 69000.00),
+(9, 'Ivy', 'Taylor', 1, 1, 53000.00),
+(10, 'Jack', 'Anderson', 3, 4, 86000.00),
+(11, 'Karen', 'Thomas', 1, 2, 58000.00),
+(12, 'Leo', 'Jackson', 2, 1, 74000.00),
+(13, 'Mona', 'White', 3, 4, 91000.00),
+(14, 'Nancy', 'Harris', 1, 1, 67000.00),
+(15, 'Oscar', 'Martin', 2, 1, 72000.00),
+(16, 'Paul', 'Garcia', 1, 2, 60000.00),
+(17, 'Quincy', 'Martinez', 3, 4, 75000.00),
+(18, 'Rachel', 'Rodriguez', 2, 3, 68000.00),
+(19, 'Sam', 'Lewis', 1, 2, 59000.00),
+(20, 'Tina', 'Walker', 2, 1, 71000.00);
+
+Create department table
+
+-- Create the Departments table
+CREATE TABLE Departments (
+ department_id INT PRIMARY KEY,
+ department_name VARCHAR(50)
+);
+-- Insert 20 records into Departments table
+INSERT INTO Departments (department_id, department_name)
+VALUES
+(1, 'Sales'),
+(2, 'Marketing'),
+(3, 'Engineering'),
+(4, 'HR'),
+(5, 'Finance'),
+(6, 'Operations'),
+(7, 'Product'),
+(8, 'IT'),
+(9, 'Legal'),
+(10, 'Customer Support'),
+(11, 'Research'),
+(12, 'Design'),
+(13, 'Logistics'),
+(14, 'Supply Chain'),
+(15, 'Business Development'),
+(16, 'Public Relations'),
+(17, 'Compliance'),
+(18, 'Strategy'),
+(19, 'Training'),
+(20, 'Quality Assurance');
+
+
+Q1.List all employees with their corresponding department names.
+-> SELECT CONCAT(employees.first_name,' ',employees.last_name) AS FullName,departments.department_Name AS Department FROM employees INNER JOIN departments ON employees.department_id = departments.department_id;
+
+Q2.Show the names of employees and their department names who work in department 1.
+-> SELECT employees.first_name,employees.last_name, departments.department_name FROM employees INNER JOIN departments ON employees.department_id = departments.department_id WHERE departments.department_id=1;
+
+Q3. Get a list of employees who work in either department 1 or department 2, along with their department names.
+-> SELECT employees.first_name,employees.last_name ,departments.department_id,departments.department_name FROM employees INNER JOIN departments ON employees.department_id = departments.department_id WHERE departments.department_id=1 OR departments.department_id=2 ORDER BY departments.department_id;
+
+Q4.Find the names of employees and their managers by joining the Employees table to itself.
+-> SELECT CONCAT(t1.first_name,' ',t1.last_name) AS EmployeeName,CONCAT(t2.first_name,' ',t2.last_name) AS ManagerName FROM employees AS t1 INNER JOIN employees AS t2 ON t1.manager_id= t2.emp_id;
+
+Q5.Show employees and their department names where the employee's salary is greater than 60,000.
+-> SELECT employees.first_name,employees.last_name, departments.department_name FROM employees INNER JOIN departments ON employees.department_id = departments.department_id WHERE employees.salary>60000;
+
+Q6. Display the names and departments of employees who belong to departments 3 or 4.
+-> SELECT employees.first_name,employees.last_name,departments.department_name FROM employees INNER JOIN departments ON employees.department_id = departments.department_id WHERE departments.department_id=3 OR departments.department_id=4 ORDER BY departments.department_id; 
+
+Q7.List employees with their departments whose salary is above $70,000.
+-> SELECT employees.first_name,employees.last_name, departments.department_name FROM employees INNER JOIN departments ON employees.department_id = departments.department_id WHERE employees.salary>60000;
+
+**Q8. Show employees with their manager’s name (from the Employees table) and department names.
+-> SELECT CONCAT(t1.first_name,' ',t1.last_name) AS EmployeeName,CONCAT(t2.first_name,' ',t2.last_name) AS ManagerName FROM employees AS t1 LEFT OUTER JOIN employees AS t2 ON t1.manager_id= t2.emp_id
+UNION 
+SELECT deparments.department_name AS Department FROM employees INNER JOIN departments ON employees.department_id = departments.department_id;
+
+Q9.Get the list of employees who work in both the Sales and Marketing departments.
+-> SELECT employees.first_name,employees.last_name,departments.department_name FROM employees INNER JOIN departments ON employees.department_id = departments.department_id WHERE departments.department_name="Sales" OR departments.department_name="Marketing";
+
+Q10.Find employees and their departments, but exclude employees without a department.
+-> SELECT employees.first_name,employees.last_name,departments.department_name FROM employees INNER JOIN departments ON employees.department_id = departments.department_id;
+
+Q11. Show all employees with their department names, including employees without departments.
+-> SELECT employees.first_name,employees.last_name,departments.department_name FROM employees LEFT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q12. List employees with their manager names, including those without a manager.
+-> SELECT CONCAT(t1.first_name,' ',t1.last_name) AS EmployeeName,CONCAT(t2.first_name,' ',t2.last_name) AS ManagerName FROM employees AS t1 LEFT OUTER JOIN employees AS t2 ON t1.manager_id= t2.emp_id;
+
+Q13. Get a list of employees and their departments, including employees who belong to no department.
+-> SELECT employees.first_name,employees.last_name,departments.department_name FROM employees LEFT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q14. Display all employees and their department names, including employees who belong to no department.
+-> SELECT employees.first_name,employees.last_name,departments.department_name FROM employees LEFT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q15. List employees and departments, where employees without departments are included in the result.
+-> SELECT employees.first_name,employees.last_name,departments.department_name FROM employees LEFT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q16. Retrieve the names of employees and their departments, including employees without any department.
+-> SELECT employees.first_name,employees.last_name,departments.department_name FROM employees LEFT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q17. Get the details of employees and their departments, including employees who have no department.
+-> SELECT employees.first_name,employees.last_name,employees.department_id,departments.department_name FROM employees LEFT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q18. Display employees who do not belong to any department, including their details.
+-> SELECT * FROM employees WHERE department_id IS NULL;
+
+Q19. Show employees and their managers who are in the Sales department or have no manager.
+-> SELECT employees.first_name, employees.last_name,departments.department_name FROM employees INNER JOIN departments ON employees.department_id = departments.department_id WHERE departments.department_name="Sales" OR employees.manager_id IS NULL
+
+Q20. List employees and departments, including departments with no employees.
+-> SELECT departments.department_name,employees.first_name,employees.last_name FROM departments LEFT OUTER JOIN employees ON employees.department_id = departments.department_id;
+
+Q21. List all departments and employees, including departments with no employees.
+-> SELECT departments.department_name,employees.first_name,employees.last_name FROM employees RIGHT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q22. Show departments and employees, including departments with no employees.
+-> SELECT departments.department_name,employees.first_name,employees.last_name FROM departments LEFT OUTER JOIN employees ON employees.department_id = departments.department_id;
+
+Q23. Display departments and employees, showing departments with no employees as well.
+-> SELECT departments.department_name,employees.first_name,employees.last_name FROM employees RIGHT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q24. Retrieve the names of departments and their employees, including departments without employees.
+-> SELECT departments.department_name,employees.first_name,employees.last_name FROM employees RIGHT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q25.List all departments and their employees, including departments without employees.
+-> SELECT departments.department_name,employees.first_name,employees.last_name FROM employees RIGHT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q26.Show the employees and their department names, including departments with no employees.
+-> SELECT departments.department_name,employees.first_name,employees.last_name FROM employees RIGHT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q27.Retrieve the list of all departments with the employees in each department, including departments without any employees.
+-> SELECT departments.department_name,employees.first_name,employees.last_name FROM employees RIGHT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q28.Find all departments and the employees in them, including departments with no employees.
+-> SELECT departments.department_name,employees.first_name,employees.last_name FROM employees RIGHT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q29 Display all departments and employees, where departments with no employees are also shown.
+-> SELECT departments.department_name,employees.first_name,employees.last_name FROM employees RIGHT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q30.Get a list of departments and employees, including those departments that have no employees.
+-> SELECT departments.department_name,employees.first_name,employees.last_name FROM employees RIGHT OUTER JOIN departments ON employees.department_id = departments.department_id;
+
+Q31. Show every possible combination of employees and departments.
+-> SELECT employees.first_name,departments.department_name FROM employees CROSS JOIN departments; 
+
+Q32. List all combinations of employee names and department names.
+-> SELECT employees.first_name,departments.department_name FROM employees CROSS JOIN departments; 
+
+Q33.Retrieve every possible pairing of employees and department names.
+->  SELECT employees.first_name,departments.department_name FROM employees CROSS JOIN departments; 
+
+Q34. Generate a list of all possible combinations between employees and departments.
+->  SELECT employees.first_name,departments.department_name FROM employees CROSS JOIN departments; 
+
+Q35. List every employee paired with every department, regardless of matching data.
+->  SELECT employees.first_name,departments.department_name FROM employees CROSS JOIN departments; 
+
+Q36.Display all combinations of employee names with department names.
+->  SELECT employees.first_name,departments.department_name FROM employees CROSS JOIN departments; 
+
+Q37. Retrieve every possible pairing between employees and department names.
+->  SELECT employees.first_name,departments.department_name FROM employees CROSS JOIN departments; 
+
+Q38. Show the combination of employee names with all department names.
+->  SELECT employees.first_name,departments.department_name FROM employees CROSS JOIN departments; 
+
+Q39.Create a list of every employee with every department, showing all possible combinations.
+->  SELECT employees.first_name,departments.department_name FROM employees CROSS JOIN departments; 
+
+Q40.Display all possible pairings of employees with department names.
+->  SELECT employees.first_name,departments.department_name FROM employees CROSS JOIN departments; 
+
+Q41. List employees with their managers by joining the Employees table to itself.
+-> SELECT CONCAT(t1.first_name,' ',t1.last_name) AS EmployeeName,CONCAT(t2.first_name,' ',t2.last_name) AS ManagerName FROM employees AS t1 INNER JOIN employees AS t2 ON t1.manager_id= t2.emp_id;
+
+Q42. Show employees who are also managers by using a self join.
+-> SELECT  distinct concat(t2. first_name,' ',t2.last_name) AS Employee/Manger FROM employees AS t1 INNER JOIN employees AS t2 ON t1.manager_id= t2.emp_id;
+
+Q43. Display employees and their manager's names, including those without managers.
+-> SELECT CONCAT(t1.first_name,' ',t1.last_name) AS EmployeeName,CONCAT(t2.first_name,' ',t2.last_name) AS ManagerName FROM employees AS t1 LEFT OUTER JOIN employees AS t2 ON t1.manager_id= t2.emp_id;
