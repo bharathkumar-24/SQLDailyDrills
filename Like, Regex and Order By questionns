@@ -1,0 +1,74 @@
+1. Find all products where product_id starts with 'A' and quantity_sold is greater than 100. Order by quantity_sold in descending order?
+->  SELECT * FROM sales WHERE product_id like "A%" AND quantity_sold > 2 ORDER BY quantity_sold DESC;
+
+2. Get all products where product_id contains 'B' and quantity_sold is less than 50. Order by sales_date in ascending order.
+-> SELECT * FROM sales WHERE product_id LIKE "%B%" AND qunatity_sold<50 ORDER BY sales_date;
+
+3. Find all products where product_id ends with '5' and quantity_sold is between 50 and 200. Order by sales_date in descending order.
+-> SELECT * FROM sales WHERE product_id LIKE "%5" AND quantity_sold BETWEEN 50 AND 200 ORDER BY sales_date DESC;
+
+4. Get all products where product_id starts with 'C' and sales_date is in 2023. Order by quantity_sold in ascending order.
+-> SELECT * FROM sales WHERE product_id LIKE "C%" AND sales_date LIKE "2023-%" ORDER BY quantity_sold DESC;
+
+5. Find all products where product_id contains 'XY' and quantity_sold is greater than 300. Order by product_id in ascending order.
+-> SELECT * FROM sales WHERE product_id REGEXP "XY" AND quantity_sold >300  ORDER BY product_id DESC;
+
+6. Find products where product_id starts with 'P' and sales_date is in February 2023. Order them by quantity_sold in descending order.
+-> SELECT * FROM sales WHERE product_id LIKE "p%" AND slaes_date LIKE "2023-02-%" ORDER BY quantity_sold DESC;
+
+7. Get all products where product_id ends with '3' and quantity_sold is greater than 150. Order by sales_date in ascending order.
+-> SLECT * FROM sales WHERE product_id LIKE "%3" AND quantity_sold > 150 ORDER BY sales_date DESC;
+ 
+8. Find all products where product_id contains '123' and quantity_sold is between 100 and 500. Order by quantity_sold in ascending order.
+-> SELECT * FROM sales WHERE product_id REGEXP "123" AND Qunatity_sold BETWEE 100 AND 5000 ORDER BY quantity_sold;
+
+9. List all products where product_id starts with 'A' and sales_date is in the first quarter of 2023. Order by sales_date in descending order.
+-> SELECT * FROM sales WHERE product_id LIKE "A%" AND sales_date REGEXP "^2023-[01,02,03,04]+-" ORDER BY sales_date DESC;
+
+10. Find all sales where product_id ends with '5' and quantity_sold is less than 50. Order by product_id in ascending order.
+-> SELECT * FROM sales WHERE product_id LIKE "%5" AND quantity_sold < 50 ORDER BY product_id;
+ 
+11. Get all sales where product_id contains 'XY' and quantity_sold is greater than 500. Order by sales_date in descending order.
+-> SELECT * FROM sales WHERE product_id LIKE '%xy%' AND quantity_sold > 500 ORDER BY sales_date DESC;
+
+12. Find all products where product_id starts with 'M' and sales_date is in 2022. Order by quantity_sold in ascending order.
+-> SLECT * FROM sales WHERE product_id LIKE "A%" AND sales_date LIKE "2022%" ORDER BY quantity_sold ;
+
+13. Find products where product_id ends with '99' and quantity_sold is less than 1000. Order by sales_date in descending order.
+-> SELECT * FROM sales WHERE product_id LIKE "%99" AND quantity_sold <1000 ORDER  BY sales_date DESC;
+
+14. Get all products where product_id starts with 'P' and sales_date is between '2023-04-01' and '2023-06-30'. Order by quantity_sold in descending order.
+-> SELECT * FROM sales WHERE product_id LIKE "P%" AND sales_date BETWEEN '2023-04-01' and '2023-06-30' ORDER BY quantity_sold DESC;
+
+15. Find all products where product_id contains '123' and quantity_sold is greater than 200. Order by product_id in ascending order.
+-> SELECT * FROM sales WHERE product_id LIKE "%123%" AND quantity_sold > 200 ORDER BY product_id;
+
+16. Find all sales where product_id starts with 'A' and quantity_sold is between 50 and 150. Order by sales_date in ascending order.
+-> SELECT * FROM sales WHERE product_id LIKE "A%" AND quantity_sold BETWEEN 50 AND 150 ORDER BY sales_date;
+
+17. List all products where product_id contains 'AB' and sales_date is in January 2023. Order by quantity_sold in descending order.
+-> SELECT * FROM sales WHERE product_id LIKE "%AB%" AND sales_date LIKE "2023-01-%" ORDER BY quntity_sold DESC;
+
+18. Get all products where product_id starts with 'Z' and quantity_sold is less than 200. Order by sales_date in descending order.
+-> SELECT * FROM sales WHERE product_id LIKE "Z%" AND quantity_sold <200 ORDER BY sales_date DESC;
+
+19. Find all products where product_id ends with '11' and quantity_sold is greater than 100. Order by sales_date in ascending order.
+-> SELECT * FROM sales WHERE product_id LIKE "%11" AND quantity_sold > 100 ORDER BY sales_date;
+
+20. Get all products where product_id contains 'AB123' and sales_date is after '2023-05-01'. Order by quantity_sold in descending order.
+SELECT * FROM sales WHERE product_id LIKE "%AB123%" AND slaes_date > "2025-05-01" ORDER BY qunatity_sold DESC;
+
+21. Find products where product_id starts with 'Q' and quantity_sold is less than 50. Order by sales_date in ascending order.
+-> SELECT * FROM sales WHERE product_id LIKE "Q%" AND quantity_sold < 50 ORDER BY sales_date ;
+
+22. Find all products where product_id ends with '23' and quantity_sold is between 150 and 300. Order by product_id in ascending order.
+-> SELECT * FROM sales WHERE product_id LIKE "%23" AND quantity_sold BETWEEN 150 AND 300  ORDER BY product_id AESC;
+
+23. Get all sales where product_id contains 'DEF' and quantity_sold is greater than 1000. Order by quantity_sold in descending order.
+-> SELECT * FROM sales WHERE product_id LIKE "%def%" AND quantity_sold >1000 ORDER BY quantity_sold DESC;
+
+24. Find all products where product_id starts with 'L' and sales_date is in 2023. Order by quantity_sold in ascending order.
+->  SELECT * FROM sales WHERE product_id LIKE "L%" AND sales_date LIKE "2023%" ORDER BY quantity_sold AESC;
+
+25. List all products where product_id ends with '777' and quantity_sold is between 100 and 500. Order by sales_date in descending order.
+-> SELECT * FROM sales WHERE product_id LIKE "%777" AND quantity_sold BETWEEN 100 AND 500 ORDER BY sales_date DESC;
