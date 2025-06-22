@@ -1,0 +1,98 @@
+=> CREATE TABLE sales (id INT PRIMARY KEY,product_id VARCHAR(10),sales_date DATE, quantity_sold INT, price DECIMAL, region VARCHAR(30));
+
+=> INSERT INTO sales (id,product_id,product_name,sales_date,quantity_sold,price,region) VALUES 
+    (1,"P01","Moniter","2025-01-17",3,1000.00,"ameerpet"),
+    (2,"P02","cpu","2025-01-30",2,4000.00,"shadnagar"),
+    (3,"P03","mouse","2025-02-11",5,2500.00,"kuktpally"),
+    (4,"P04","keyboard","2025-03-14",6,300 0.00,"amerpet"),
+    (5,"P05","cpu","2025-03-18",1,5000.00,"nampally"),
+    (6,"P06","speaker","2025-04-09",2,1000.00,"borabanda"),
+    (7,"P07","pendrive","2025-05-21",2,1000.00,"madhapur"),
+    (8,"P08","chair","2025-06-25",1,1000.00,"erraggda"),
+    (9,"P09","table","2025-02-03",2,2000.00,"amerpet"),
+    (10,"P010","charger","2025-03-01",3,450.00,"nampally");
+
+QUESTIONS:
+
+1. Find the total quantity sold for each product.
+-> SELECT product_name,sum(quantity_sold) from sales group by product_name;
+
+2. Get the total sales per product.
+-> SELECT product_name,sum(quantity_sold * price) AS totalSales FROM sales GROUP BY product_name;
+
+3. Find the average quantity sold for each product.
+-> SELECT product_name,AVG(quantity_sold)  FROM sales GROUP BY product_name;
+
+4. Find the number of sales transactions for each product.
+-> SELECT product_name, count(*) FROM sales GROUP BY product_name;
+
+5. Find the minimum quantity sold for each product.
+-> SELECT product_name,MIN(quantity_sold) FROM sales GROUP BY product_name;
+
+6. Find the maximum quantity sold for each product.
+-> SELECT product_name,MAX(quantity_sold) FROM sales GROUP BY product_name;
+
+7. Find the total quantity sold per product on each day.
+-> SELECT daysales_date,SUM(quantity_sold) FROM sales GROUP BY sales_date;
+
+8. Get the total sales for each product, grouped by month.
+-> SELECT product_name AS product,DATE_FORMAT(sales_date, '%Y-%M-%D') AS sales_month, SUM(quantity_sold * price) AS total_sales FROM sales GROUP BY sales_month,product ORDER BY sales_month;
+
+9. Find the number of sales per product by day.
+-> SELECT sales_date AS Date,COUNT(*) AS SalesPerDay FROM sales GROUP BY Date;
+
+10. Get the total quantity sold for each product, grouped by year.
+-> SELECT DATE_FORMAT(sales_date,"%Y") as year, SUM(quantity_sold) FROM sales GROUP BY year;
+
+11. Find the average quantity sold for each product, grouped by month.
+-> SELECT DATE_FORMAT (sales_date,"%Y-%M") AS date ,product_name, AVG(quantity_sold) FROM sales GROUP BY date,product_name ORDER BY date;
+-> SELECT DATE_FORMAT (sales_date,"%m") AS month ,product_name, AVG(quantity_sold) FROM sales GROUP BY month,product_name ORDER BY month;
+-> SELECT MONTH(sales_date) AS month ,product_name, AVG(quantity_sold) FROM sales GROUP BY month,product_name ORDER BY month;
+
+12. Find the product with the highest total sales.
+-> SELECT product_name,SUM(quantity_sold*price) AS total_sales FROM sales GROUP BY product_name ORDER BY total_sales DESC LIMIT 1;
+
+13. Find the product with the lowest total sales.
+->  SELECT product_name,SUM(quantity_sold*price) AS total_sales FROM sales GROUP BY product_name ORDER BY total_sales LIMIT 1;
+
+14. Find the total sales per product for a specific month.
+-> SELECT product_name,DATE_FORMAT(sales_date,"%M") AS month,SUM(quantity_sold*price) FROM sales WHERE DATE_FORMAT(sales_date,"%M")="January"  GROUP BY product_name,month ;
+-> SELECT product_name,DATE_FORMAT(sales_date,"%M") AS month,SUM(quantity_sold*price) FROM sales WHERE DATE_FORMAT(sales_date,"%m")="01"  GROUP BY product_name,month ;
+-> SELECT product_name,DATE_FORMAT(sales_date,"%M") AS month,SUM(quantity_sold*price) FROM sales WHERE MONTH(sales_date)="01"  GROUP BY product_name,month ;
+
+15. Get the total quantity sold per product for each week.
+-> SELECT product_name AS product,WEEK(sales_date) AS Week ,SUM(quantity_sold) FROM sales GROUP BY product,week ORDER BY week;
+
+16. Get the total number of sales transactions for each product.
+-> SELECT product_name AS product,count(*) FROM sales GROUP BY product;
+
+17. Find the average quantity sold for each product by week.
+-> SELECT WEEK(sales_date) AS week, product_name AS Product, AVG(quantity_sold) FROM sales GROUP BY week,product ORDER BY week;
+
+18. Find the average sales per transaction for each product.
+-> SELECT product_name AS product,AVG(quantity_sold*price) AS average_sales,count(*) AS Per_transaction FROM sales GROUP BY product;
+
+19. Get the number of distinct products sold per day.
+-> select date_format (sales_date,"%m-%d") as date , count(product_name) from sales group by date;
+-> SELECT DAY(sales_date) AS day, COUNT(product_name) FROM sales GROUP BY day ORDER BY day;
+
+20. Find the total quantity sold for each product, grouped by quarter.
+-> SELECT product_name AS product,QUARTER(sales_date) AS quarter,SUM(quantity_sold) FROM sales GROUP BY product,quarter;
+-> SELECT product_name AS product,QUARTER(sales_date) AS quarter,YEAR(sales_date) AS year,SUM(quantity_sold) FROM sales GROUP BY product,quarter,year;
+
+21. Get the total sales per product for each day of the week.
+-> SELECT product_name AS product, WEEK(sales_date) AS week, DAY (sales_date) AS day,SUM(quantity_sold*price) AS total_sales FROM sales GROUP BY product,week,day ORDER BY week;
+
+22. Find the product with the highest average sales per transaction.
+-> SELECT product_name AS product, AVG(quantity_sold*price) AS average_sales, COUNT(*) AS sales_per_transaction FROM sales GROUP BY product ORDER BY average_sales DESC LIMIT 1;
+
+23. Find the total quantity sold for each product in a specific year.
+-> SELECT product_name AS product,YEAR(sales_date) AS year,SUM(quantity_sold) FROM sales GROUP BY product,year;
+-> SELECT product_name AS product,SUM(quantity_sold) FROM sales  WHERE YEAR(sales_date)="2025" GROUP BY product;
+
+24. Find the total quantity sold for each product for the current year.
+-> SELECT product_name AS product,YEAR(NOW()) AS year,SUM(quantity_sold) FROM sales GROUP BY product,year;
+-> SELECT product_name AS product,YEAR(CURDATE()) AS year,SUM(quantity_sold) FROM sales GROUP BY product,year;
+
+25. Get the total sales for each product in the last quarter.
+-> SELECT product_name AS Product,SUM(quantity_sold*price) AS total_sales FROM sales WHERE (QUARTER(sales_date) = QUARTER(CURDATE()) - 1 AND YEAR(sales_date) = YEAR(CURDATE())) OR (QUARTER(sales_date) = 4 AND YEAR(sales_date) = YEAR(CURDATE()) - 1) GROUP BY product;
