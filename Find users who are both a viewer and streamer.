@@ -1,4 +1,6 @@
+
 Q. Find users who are both a viewer and streamer.
+
 Table: twitch_sessions
 session_end:timestamp without time zone
 session_id:bigint
