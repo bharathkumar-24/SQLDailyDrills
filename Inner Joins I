@@ -1,4 +1,6 @@
-=> CREATE TABLE departments (departmentID INT PRIMARY KEY,departmentName VARCHAR(25) NOT NULL);
+=>
+
+CREATE TABLE departments (departmentID INT PRIMARY KEY,departmentName VARCHAR(25) NOT NULL);
 
 INSERT INTO departments  VALUES
 (101,"HR" ),
@@ -6,7 +8,9 @@ INSERT INTO departments  VALUES
 (103,"Accounts" ),
 (104,"IT");
 
-=> CREATE TABLE employess (empID INT PRIMARY KEY,empName VARCHAR(30) NOT NULL,departmentID INT , salary DECIMAL (10,2),          FOREIGN KEY (departmentID) REFERENCES departments (departmentID));
+=>
+
+CREATE TABLE employess (empID INT PRIMARY KEY,empName VARCHAR(30) NOT NULL,departmentID INT , salary DECIMAL (10,2),          FOREIGN KEY (departmentID) REFERENCES departments (departmentID));
 
 INSERT INTO employess VALUES 
 (1,"Alice",101,35000),
