@@ -1,4 +1,4 @@
-### Create table
+# Create table
 
 CREATE TABLE Member (
 CustomerID INT PRIMARY KEY,
@@ -8,7 +8,7 @@ Email VARCHAR(100),a
 Phone VARCHAR(15)
 );
 
-### Insert values into the table 
+# Insert values into the table 
 
 INSERT INTO Member (CustomerID, FirstName, LastName, Email, Phone)
 VALUES (1, 'John', 'Doe', 'john.doe@example.com', '1234567890'), (2, 'Emily',
