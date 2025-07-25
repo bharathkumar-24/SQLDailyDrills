@@ -9,7 +9,6 @@ log_date:date
 user_id:text
 
 SOLUTION:
-
 SELECT 
     COUNT(Distince m.user_id) AS count
 FROM 
