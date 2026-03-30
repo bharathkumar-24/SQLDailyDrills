@@ -1,4 +1,4 @@
-            Table: MyNumbers
+/*            Table: MyNumbers
 
 +-------------+------+
 | Column Name | Type |
@@ -62,6 +62,7 @@ Output:
 Explanation: There are no single numbers in the input table so we return null.
 
 SOLUTION:
+*/
 
 SELECT 
     MAX(num) AS num
