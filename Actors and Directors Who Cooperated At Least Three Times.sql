@@ -1,4 +1,4 @@
-
+/*
 Table: ActorDirector
 
 +-------------+---------+
@@ -42,6 +42,7 @@ Output:
 Explanation: The only pair is (1, 1) where they cooperated exactly 3 times.
 
 SOLUTION:
+*/
 
 SELECT 
     actor_id,
