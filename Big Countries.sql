@@ -1,4 +1,4 @@
-              TABLE
+/*              TABLE
 
 +-------------+---------+
 | Column Name | Type    |
@@ -37,5 +37,7 @@ Q. A country is big if:
 
 Write a solution to find the name, population, and area of the big countries.Return the result table in any order.
 
-SOL : SELECT name,population,area FROM World WHERE  area >= 3000000 or population>=25000000;
+SOL :
+*/
+SELECT name,population,area FROM World WHERE  area >= 3000000 or population>=25000000;
     
