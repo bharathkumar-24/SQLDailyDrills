@@ -1,3 +1,4 @@
+/*
 Table: Employee
 
 +-------------+---------+
@@ -38,6 +39,8 @@ Output:
 Explanation: Joe is the only employee who earns more than his manager.
 
 SOLUTION:
+*/
+
 SELECT 
     l1.name as Employee
 FROM 
