@@ -1,4 +1,4 @@
-Table: Person
+/*   Table: Person
 +-------------+---------+
 | Column Name | Type    |
 +-------------+---------+
@@ -34,6 +34,8 @@ Output:
 Explanation: a@b.com is repeated two times.
 
 SOLUTION:
+*/
+
 SELECT 
     DISTINCT l1.email 
 FROM  
