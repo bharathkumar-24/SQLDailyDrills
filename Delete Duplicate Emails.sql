@@ -1,3 +1,4 @@
+/*
 Table: Person
 
 +-------------+---------+
@@ -34,6 +35,8 @@ Output:
 Explanation: john@example.com is repeated two times. We keep the row with the smallest Id = 1.
 
 SOLUTION:
+*/
+
 DELETE p 
 FROM Person p
 INNER JOIN Person p2
