@@ -1,3 +1,5 @@
+/*
+
 Q. Count the number of unique users per day who logged in from both a mobile device and web. Output the date and the corresponding number of users.
 
 Table: mobile_logs
@@ -9,6 +11,8 @@ log_date:date
 user_id:text
 
 SOLUTION:
+*/
+
 SELECT 
     COUNT(Distince m.user_id) AS count
 FROM 
