@@ -1,6 +1,5 @@
+/*
 Table: Employee
-
-
 +--------------+---------+
 | Column Name  | Type    |
 +--------------+---------+
@@ -73,7 +72,8 @@ In the Sales department:
 - There is no third-highest salary as there are only two employees
 
 
-SOLUTION:
+SOLUTION:*/
+
 WITH max_salaries AS (
     SELECT 
         departmentID,
