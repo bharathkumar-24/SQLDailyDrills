@@ -1,4 +1,4 @@
-
+/*
 
 Table: Employee
 +--------------+---------+
@@ -60,6 +60,8 @@ Output:
 Explanation: Max and Jim both have the highest salary in the IT department and Henry has the highest salary in the Sales department.
 
 SOLUTION:
+*/
+
 SELECT 
     Department.name AS Department,
     Employee.name AS Employee,
