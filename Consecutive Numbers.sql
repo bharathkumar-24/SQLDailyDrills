@@ -1,4 +1,4 @@
-
+/*
 Table: Logs
 
 +-------------+---------+
@@ -40,6 +40,8 @@ Output:
 Explanation: 1 is the only number that appears consecutively for at least three times.
 
 SOLUTION:
+*/
+
 SELECT 
     DISTINCT l1.num as ConsecutiveNums
 FROM 
