@@ -1,4 +1,4 @@
-
+/*
 Table: Employee
 +-------------+---------+
 | Column Name | Type    |
@@ -57,6 +57,8 @@ Output:
 +------+-------+
 
 SOLUTION:
+*/
+
 SELECT 
     e.name,
     b.bonus
