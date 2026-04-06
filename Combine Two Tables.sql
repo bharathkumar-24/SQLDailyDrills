@@ -1,4 +1,4 @@
-Table: Person
+/*Table: Person
 
 +-------------+---------+
 | Column Name | Type    |
@@ -58,7 +58,7 @@ addressId = 1 contains information about the address of personId = 2.
 
 
 solution: 
-
+*/
 
 SELECT 
     person.firstName,
