@@ -1,4 +1,4 @@
-             Table: Customers
+/*             Table: Customers
 
 +-------------+---------+
 | Column Name | Type    |
@@ -54,6 +54,8 @@ Output:
 +-----------+
 
 SOLUTION:
+*/
+
 SELECT 
     name as Customers 
 FROM 
