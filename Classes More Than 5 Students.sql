@@ -1,4 +1,4 @@
-             Table: Courses
+/*             Table: Courses
 
 +-------------+---------+
 | Column Name | Type    |
@@ -49,7 +49,7 @@ Explanation:
 
 
 SOLUTION:
-
+*/
 SELECT 
     class
 FROM 
