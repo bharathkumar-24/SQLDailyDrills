@@ -1,5 +1,5 @@
-
-Q. Find users who are both a viewer and streamer.
+/*
+Find users who are both a viewer and streamer.
 
 Table: twitch_sessions
 session_end:timestamp without time zone
@@ -9,7 +9,7 @@ session_type:text
 user_id:bigint
 
 SOLUTION:
-
+*/
 
 SELECT DISTINCT s1.user_id
 FROM twitch_sessions s1
