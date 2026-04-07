@@ -1,3 +1,4 @@
+/*
 CREATE TABLE t1 (
     id INT PRIMARY KEY,
     name VARCHAR(50)
@@ -78,10 +79,12 @@ INSERT INTO t3 (id, city) VALUES
 
 
 Q1. full outerjoin on id (matching and non_matchin rows)?
--> SELECT t1.id,t1.name,t2.product FROM t1 LEFT OUTER JOIN t2 ON t1.id=t2.id
+*/
+
+ SELECT t1.id,t1.name,t2.product FROM t1 LEFT OUTER JOIN t2 ON t1.id=t2.id
     UNION
    SELECT t1.id,t1.name,t2.product FROM t1 RIGHT OUTER JOIN t2 ON t1.id=t2.id;
 
--> SELECT t1.name,t2.product FROM t1 LEFT OUTER JOIN t2 ON t1.id=t2.id
+ SELECT t1.name,t2.product FROM t1 LEFT OUTER JOIN t2 ON t1.id=t2.id
     UNION
    SELECT t1.name,t2.product FROM t1 RIGHT OUTER JOIN t2 ON t1.id=t2.id;
