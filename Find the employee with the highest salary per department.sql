@@ -1,4 +1,5 @@
-Q5. Find the employee with the highest salary per department. Output the department name, employee's first name along with the corresponding salary.
+/*
+Find the employee with the highest salary per department. Output the department name, employee's first name along with the corresponding salary.
 
 Table:Employee:
 id:bigint
@@ -17,6 +18,7 @@ address:text
 manager_id:bigint
 
 SOLUTION:
+*/
 
 SELECT 
     E.department AS department_name,
