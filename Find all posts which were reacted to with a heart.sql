@@ -1,5 +1,5 @@
-
-Q. Find all posts which were reacted to with a heart. For such posts output all columns from facebook_posts table.
+/*
+Find all posts which were reacted to with a heart. For such posts output all columns from facebook_posts table.
 Tables: facebook_reactions, facebook_posts
 
 facebook_reactions
@@ -17,6 +17,8 @@ poster:bigint
 post_text:text
 post_keywords:text
 post_date:date
+
+*/
 
 SELECT 
     p.*
