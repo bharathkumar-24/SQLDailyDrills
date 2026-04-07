@@ -1,4 +1,5 @@
-Q. Find the review_text that received the highest number of cool votes. Output the business name along with the review text with the highest number of cool votes.
+/*
+Find the review_text that received the highest number of cool votes. Output the business name along with the review text with the highest number of cool votes.
 
 Table:yelp_reviews
 
@@ -13,6 +14,7 @@ useful:bigint
 cool:bigint
 
 SOLUTION:
+*/
 
 SELECT 
     business_name,
