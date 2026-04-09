@@ -1,3 +1,4 @@
+/*
 Table: Salary
 
 +-------------+----------+
@@ -46,6 +47,7 @@ Explanation:
 
 
 SOLUTION:
+*/
 
 UPDATE Salary
 SET sex = CASE
