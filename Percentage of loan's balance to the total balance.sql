@@ -1,5 +1,5 @@
-
-Q. Write a query that returns the rate_type, loan_id, loan balance , and a column that shows with what percentage the loan's balance contributes to the total balance among the loans of the same rate type. Sort the final output by rate_type and loan_id.
+/*
+Write a query that returns the rate_type, loan_id, loan balance , and a column that shows with what percentage the loan's balance contributes to the total balance among the loans of the same rate type. Sort the final output by rate_type and loan_id.
 Table: submissions
 balance:double precision
 id:bigint
@@ -8,6 +8,7 @@ loan_id:bigint
 rate_type:text
 
 SOLUTION:
+*/
 
 SELECT
   rate_type,
