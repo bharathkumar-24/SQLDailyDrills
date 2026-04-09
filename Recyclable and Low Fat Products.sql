@@ -1,4 +1,4 @@
-                     
+/*                     
 TABLE
 
 +-------------+---------+
@@ -34,5 +34,6 @@ Output:
 Explanation: Only products 1 and 3 are both low fat and recyclable.
 -----------------------------------------------------------------------------------------------------------------------------
 Q.Find the product_id of product which is low fat and recyclable?
+*/
 
-SOL:select product_id from products where low_fats="y" and recyclable="y";
+select product_id from products where low_fats="y" and recyclable="y";
