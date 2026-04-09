@@ -1,4 +1,4 @@
-Table: Insurance
+/* Table: Insurance
 
 +-------------+-------+
 | Column Name | Type  |
@@ -54,7 +54,8 @@ So, the result is the sum of tiv_2016 of the first and last record, which is 45.
 
 
 SOLUTION:
-
+*/
+ 
 SELECT ROUND(SUM(tiv_2016), 2) AS tiv_2016
 FROM (
     SELECT tiv_2016,
