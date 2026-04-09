@@ -1,3 +1,4 @@
+/*
 Table: SalesPerson
 
 +-----------------+---------+
@@ -93,8 +94,8 @@ Output:
 Explanation: 
 According to orders 3 and 4 in the Orders table, it is easy to tell that only salesperson John and Pam have sales to company RED, so we report all the other names in the table salesperson.
 
-
 SOLUTION:
+*/
 
 SELECT 
     sp.name
