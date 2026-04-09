@@ -1,4 +1,5 @@
-176. Second Highest Salary
+/*
+Second Highest Salary
 
 Table: Employee
 
@@ -49,6 +50,7 @@ Output:
 +---------------------+
 
 SOLUTION:
+*/
 
 SELECT IFNULL (
     (SELECT DISTINCT salary from employee 
