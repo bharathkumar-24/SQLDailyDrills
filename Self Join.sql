@@ -1,4 +1,4 @@
-
+/*
 => CREATE TABLE employees (
     id INT PRIMARY KEY,
     name VARCHAR(50),
@@ -27,12 +27,12 @@
 (18, 'Rita', 9),
 (19, 'Sam', 9),
 (20, 'Tina', 10);
+*/
+
+-- Q1. Find the names of all the employees along  with their managers name?
+ SELECT t1.name as emp ,t2.name as manager from employees as t1 inner join employees as t2 on t1.manager_id=t2.id;
+
+-- Q2. find the employees  who dont have managers(i.e manager_id=null)?
+ SELECT t1.name as emp FROM employees AS t1 LEFT OUTER JOIN employees AS t2 on t1.manager_id=t2.id WHERE t1.manager_id IS NULL;
 
 
-Q1. Find the names of all the employees along  with their managers name?
--> SELECT t1.name as emp ,t2.name as manager from employees as t1 inner join employees as t2 on t1.manager_id=t2.id;
-
-Q2. find the employees  who dont have managers(i.e manager_id=null)?
--> SELECT t1.name as emp FROM employees AS t1 LEFT OUTER JOIN employees AS t2 on t1.manager_id=t2.id WHERE t1.manager_id IS NULL;
-
-Q3. find the employess who have the same manager (list pairs of employess)
