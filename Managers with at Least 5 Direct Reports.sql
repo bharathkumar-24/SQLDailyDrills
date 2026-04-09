@@ -1,3 +1,4 @@
+/*
 Table: Employee
 +-------------+---------+
 | Column Name | Type    |
@@ -38,6 +39,7 @@ Output:
 +------+
 | John |
 +------+
+*/
 
 SELECT e.name
 FROM employee e
