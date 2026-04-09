@@ -1,4 +1,6 @@
-Q. Write a query that returns the number of unique users per client per month.
+/* 
+Write a query that returns the number of unique users per client per month.
+
 Table: fact_events
 client_id:text
 customer_id:text
@@ -8,9 +10,8 @@ id:bigint
 time_id:dateu
 User_id:text
 
-
 SOLUTION:
-
+*/
 
 SELECT 
     clit_id,
