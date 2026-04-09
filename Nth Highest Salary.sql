@@ -1,4 +1,4 @@
-Table: Employee
+/* Table: Employee
 
 +-------------+------+
 | Column Name | Type |
@@ -49,6 +49,8 @@ Output:
 +------------------------+
 
 SOLUTION:
+*/
+
 CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
 BEGIN
 declare m int;
